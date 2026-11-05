@@ -237,10 +237,10 @@ body {
 }
 
 /* ==========================================================================
-   5. PROJETOS / CATÁLOGO
+   5. PROJETOS / CATÁLOGO (GRID ESCALÁVEL)
    ========================================================================== */
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   border-left: 5px solid var(--accent-yellow);
   padding-left: 1rem;
 }
@@ -256,10 +256,31 @@ body {
   font-family: var(--font-code);
 }
 
+.projects-filters-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-box-placeholder input {
+  width: 100%;
+  max-width: 380px;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  align-items: stretch;
 }
 
 .project-card {
@@ -268,6 +289,7 @@ body {
   box-shadow: var(--shadow-brutal);
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
   transition: var(--transition-fast);
 }
@@ -289,6 +311,7 @@ body {
   border-bottom: 3px solid #000;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .card-banner img {
@@ -300,9 +323,10 @@ body {
 .card-banner-placeholder {
   font-family: var(--font-code);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--text-main);
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .card-content {
@@ -349,12 +373,37 @@ body {
   color: var(--text-main);
   border: 2px solid var(--purple-light);
   box-shadow: none;
+  margin-top: auto;
 }
 
 .btn-card:hover {
   background-color: var(--purple-vibrant);
   color: #fff;
   border-color: #000;
+}
+
+/* Estado vazio da biblioteca */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--bg-card);
+  border: 3px dashed var(--border-strong);
+  box-shadow: var(--shadow-brutal);
+}
+
+.empty-state h3 {
+  font-family: var(--font-code);
+  font-size: 1.5rem;
+  color: var(--accent-yellow);
+  margin-bottom: 0.8rem;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* ==========================================================================

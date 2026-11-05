@@ -3,12 +3,12 @@
  * Autor: Thomas Max Delling
  */
 
-// 1. Dados dos Projetos (Placeholder / Fácil atualização)
+// 1. Dados dos Projetos (Escalável: adicione quantos projetos quiser aqui)
 const projectsData = [
   {
     id: 1,
     title: "Projeto Caos Alpha",
-    image: "", // Deixe vazio para usar o visualizador padrão
+    image: "", // Deixe vazio para usar o cartaz padrão
     tags: ["HTML5", "CSS3", "JavaScript"],
     description: "Protótipo experimental para testes de animação e estruturas com Javascript puro.",
     repoUrl: "https://github.com/thomasDelling"
@@ -31,10 +31,21 @@ const projectsData = [
   }
 ];
 
-// 2. Renderização dos Cards na Seção de Projetos
+// 2. Renderização dos Cards na Seção de Projetos (Tratamento para biblioteca vazia e dados dinâmicos)
 function renderProjects() {
   const projectsGrid = document.getElementById("projectsGrid");
   if (!projectsGrid) return;
+
+  // Se a lista estiver vazia, exibe mensagem elegante sem inventar projetos fictícios
+  if (!projectsData || projectsData.length === 0) {
+    projectsGrid.innerHTML = `
+      <div class="empty-state">
+        <h3>&lt;DEPÓSITO VAZIO&gt;</h3>
+        <p>Nenhum projeto cadastrado no momento. O caos está sendo organizado nos bastidores, volte em breve!</p>
+      </div>
+    `;
+    return;
+  }
 
   projectsGrid.innerHTML = projectsData.map(project => {
     const bannerContent = project.image 
@@ -46,7 +57,7 @@ function renderProjects() {
       .join("");
 
     return `
-      <article class="project-card">
+      <article class="project-card" data-title="${project.title.toLowerCase()}" data-tags="${project.tags.join(',').toLowerCase()}">
         <div class="card-banner">
           ${bannerContent}
         </div>
